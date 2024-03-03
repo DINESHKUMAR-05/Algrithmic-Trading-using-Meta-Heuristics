@@ -5,17 +5,7 @@ from dataclasses import dataclass
 from src.models import *  # Assuming your models are defined in src.models
 from torch import optim
 import torch
-
-# To eliminate randomness
-def seed_everything(seed: int = 77):
-    random.seed(seed)
-    os.environ['PYTHONHASHSEED'] = str(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.enabled = False
-    torch.backends.cudnn.deterministic = True
+from src.genetic_algorithm import seed_everything
 
 os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:2"
 
@@ -53,7 +43,7 @@ class PopulationPSO:
         self.best_individual = None
 
 class PSO:
-    def __init__(self, optimized_block, criterion, population: Population, config: PSOConfig, device, verbose=True, seed: int = 77):
+    def __init__(self, optimized_block, criterion, population: PopulationPSO, config: PSOConfig, device, verbose=True, seed: int = 77):
         self.optimized_block = optimized_block
         self.criterion = criterion
         self.population = population

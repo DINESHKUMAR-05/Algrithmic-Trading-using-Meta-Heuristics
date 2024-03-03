@@ -30,6 +30,7 @@ class Individual:
         self.loss = np.inf
         self.position = np.array([self.hidden_size, self.num_layers, self.learning_rate, self.num_epochs])
         self.velocity = np.zeros_like(self.position)
+        self.best_position = np.copy(self.position)  # Initialize best_position attribute
 
     def __repr__(self):
         return (f"Chromosome {self.name} with loss: {self.loss:.4}, "
@@ -40,7 +41,7 @@ class Individual:
 class PopulationPSO:
     def __init__(self, config: PSOConfig, input_size, output_size):
         self.individuals = [Individual(input_size, output_size) for _ in range(config.num_particles)]
-        self.best_individual = None
+        self.best_individual = min(self.individuals, key=lambda x: x.loss).position
 
 class PSO:
     def __init__(self, optimized_block, criterion, population: PopulationPSO, config: PSOConfig, device, verbose=True, seed: int = 77):

@@ -64,7 +64,6 @@ class PSO:
                 print(f"Epoch: {epoch + 1}")
                 plot_metric(self.criterion.__class__.__name__, 
                             val_metric=self.val_loss_history)
-                print(f'{self.population.best_indivdual}')
                 print(f"Epoch: {epoch + 1}, Best Individual: {self.population.best_individual}")
 
     def evaluate(self, X_val, y_val):

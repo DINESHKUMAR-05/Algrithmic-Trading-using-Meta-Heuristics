@@ -77,6 +77,8 @@ class CuckooSearch:
 
                 print(f'{self.population.best_nest}')
                 saved_values.append(self.population.best_nest)
+        
+        # Print saved best nests
         for i in saved_values:
             print(i)
 

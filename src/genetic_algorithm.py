@@ -78,6 +78,7 @@ class GeneticAlgorithm:
         self.val_loss_history = []
 
     def fit(self, X_val, y_val):
+        saved_values = []
         for epoch in range(self.config.num_epochs):
             self.evaluate(X_val, y_val, self.population)
             self.select(self.population)
@@ -104,6 +105,9 @@ class GeneticAlgorithm:
                             val_metric=self.val_loss_history)
                 
                 print(f'{self.population.best_indivdual}')
+                saved_values.append(self.population.best_individual)
+        for i in saved_values:
+            print(i)
     
     def evaluate(self, X_val, y_val, population: Population):
         losses = []

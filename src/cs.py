@@ -6,6 +6,7 @@ import torch
 import random
 import os
 from dataclasses import dataclass
+import gc
 
 @dataclass
 class CuckooSearchConfig:

@@ -106,5 +106,5 @@ class PSO:
         individual.num_epochs = int(individual.position[3])
         individual.hidden_size = np.clip(individual.hidden_size, 2 ** 2, 2 ** 11)
         individual.num_layers = np.clip(individual.num_layers, 2, 30)
-        individual.learning_rate = np.clip(individual.learning_rate, 0.001, 25)
+        individual.learning_rate = np.clip(individual.learning_rate, 0.001, 0.25)
         individual.num_epochs = np.clip(individual.num_epochs, 20, 400)

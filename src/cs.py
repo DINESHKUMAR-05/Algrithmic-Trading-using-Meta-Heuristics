@@ -18,7 +18,7 @@ class CuckooSearchConfig:
 class Nest:
     def __init__(self):
         self.name = ''.join(map(str, np.random.randint(0, 9, size=7).tolist()))
-        self.num_epochs_base = np.random.choice(np.arange(60, 300))
+        self.num_epochs_base = np.random.choice(np.arange(10, 200))
         self.hidden_size = np.random.choice([2 ** power for power in range(2, 10)])
         self.num_layers = np.random.choice(np.arange(2, 15))
         self.learning_rate = round(np.random.random(), 2)
@@ -132,16 +132,16 @@ class CuckooSearch:
     def generate_new_nest(self, nest):
         new_nest = Nest()
         new_nest.hidden_size = nest.hidden_size + self.config.alpha * np.random.randn()
-        new_nest.hidden_size = int(np.clip(new_nest.hidden_size, 2 ** 3, 2 ** 9))
+        new_nest.hidden_size = int(np.clip(new_nest.hidden_size, 2 ** 3, 2 ** 11))
 
         new_nest.num_layers = nest.num_layers + self.config.alpha * np.random.randn()
-        new_nest.num_layers = np.clip(new_nest.num_layers, 2, 14)
+        new_nest.num_layers = np.clip(new_nest.num_layers, 2, 30)
 
         new_nest.learning_rate = nest.learning_rate + self.config.alpha * np.random.randn()
-        new_nest.learning_rate = np.clip(new_nest.learning_rate, 0.001, 1)
+        new_nest.learning_rate = np.clip(new_nest.learning_rate, 0.001, 0.25)
 
         new_nest.num_epochs_base = nest.num_epochs_base + self.config.alpha * np.random.randn()
-        new_nest.num_epochs_base = np.clip(new_nest.num_epochs_base, 10, 300)
+        new_nest.num_epochs_base = np.clip(new_nest.num_epochs_base, 10, 400)
 
         return new_nest
 

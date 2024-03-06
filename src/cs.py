@@ -77,7 +77,8 @@ class CuckooSearch:
 
                 print(f'{self.population.best_nest}')
                 saved_values.append(self.population.best_nest)
-        print(saved_values)
+        for i in saved_values:
+            print(i)
 
     def evaluate(self, X_val, y_val, population):
         losses = []

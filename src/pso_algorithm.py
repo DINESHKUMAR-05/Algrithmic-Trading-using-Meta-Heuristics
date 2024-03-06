@@ -52,6 +52,7 @@ class PSO:
         self.val_loss_history = []
 
     def fit(self, X_val, y_val):
+        saved_values = []
         for epoch in range(self.config.num_epochs):
             self.evaluate(X_val, y_val)
             self.update_best_individual()
@@ -65,6 +66,9 @@ class PSO:
                 plot_metric(self.criterion.__class__.__name__, 
                             val_metric=self.val_loss_history)
                 print(f"Epoch: {epoch + 1}, Best Individual: {self.population.best_individual}")
+                saved_values.append(self.population.best_individual)
+        for i in saved_values:
+            print(i)
 
     def evaluate(self, X_val, y_val):
         for individual in self.population.individuals:

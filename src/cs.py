@@ -6,7 +6,7 @@ import torch
 import random
 import os
 from dataclasses import dataclass
-import gc
+import gc  # Import gc module for garbage collection
 
 @dataclass
 class CuckooSearchConfig:
@@ -63,7 +63,7 @@ class CuckooSearch:
             for i, nest in enumerate(self.population.nests):
                 new_nest = self.generate_new_nest(nest)
                 if new_nest.loss < nest.loss:
-                    nest = new_nest
+                    self.population.nests[i] = new_nest
 
             self.abandon_nests()
 
@@ -126,16 +126,16 @@ class CuckooSearch:
     def generate_new_nest(self, nest):
         new_nest = Nest()
         new_nest.hidden_size = nest.hidden_size + self.config.alpha * np.random.randn()
-        new_nest.hidden_size = int(np.array(new_nest.hidden_size).clip(2 ** 3, 2 ** 9))
+        new_nest.hidden_size = int(np.clip(new_nest.hidden_size, 2 ** 3, 2 ** 9))
 
         new_nest.num_layers = nest.num_layers + self.config.alpha * np.random.randn()
-        new_nest.num_layers = np.array(new_nest.num_layers).clip(2, 14)
+        new_nest.num_layers = np.clip(new_nest.num_layers, 2, 14)
 
         new_nest.learning_rate = nest.learning_rate + self.config.alpha * np.random.randn()
-        new_nest.learning_rate = np.array(new_nest.learning_rate).clip(0.001, 1)
+        new_nest.learning_rate = np.clip(new_nest.learning_rate, 0.001, 1)
 
         new_nest.num_epochs_base = nest.num_epochs_base + self.config.alpha * np.random.randn()
-        new_nest.num_epochs_base = np.array(new_nest.num_epochs_base).clip(10, 300)
+        new_nest.num_epochs_base = np.clip(new_nest.num_epochs_base, 10, 300)
 
         return new_nest
 

@@ -141,7 +141,7 @@ class CuckooSearch:
         new_nest.learning_rate = np.clip(new_nest.learning_rate, 0.001, 0.25)
 
         new_nest.num_epochs_base = nest.num_epochs_base + self.config.alpha * np.random.randn()
-        new_nest.num_epochs_base = np.clip(new_nest.num_epochs_base, 10, 400)
+        new_nest.num_epochs_base = np.clip(new_nest.num_epochs_base, 20, 400)
 
         return new_nest
 

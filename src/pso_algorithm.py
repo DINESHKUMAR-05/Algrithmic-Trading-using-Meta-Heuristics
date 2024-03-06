@@ -20,7 +20,7 @@ class PSOConfig:
 
 class Individual:
     def __init__(self):
-        self.num_epochs = np.random.choice(np.arange(60, 300))
+        self.num_epochs = np.random.choice(np.arange(10, 200))
         self.hidden_size = np.random.choice([2 ** power for power in range(2, 10)])
         self.num_layers = np.random.choice(np.arange(2, 15))
         self.learning_rate = round(np.random.random(), 2)
@@ -104,7 +104,7 @@ class PSO:
         individual.num_layers = int(individual.position[1])
         individual.learning_rate = individual.position[2]
         individual.num_epochs = int(individual.position[3])
-        individual.hidden_size = np.clip(individual.hidden_size, 2 ** 2, 2 ** 9)
-        individual.num_layers = np.clip(individual.num_layers, 2, 14)
-        individual.learning_rate = np.clip(individual.learning_rate, 0.001, 1)
-        individual.num_epochs = np.clip(individual.num_epochs, 10, 300)
+        individual.hidden_size = np.clip(individual.hidden_size, 2 ** 2, 2 ** 11)
+        individual.num_layers = np.clip(individual.num_layers, 2, 30)
+        individual.learning_rate = np.clip(individual.learning_rate, 0.001, 25)
+        individual.num_epochs = np.clip(individual.num_epochs, 20, 400)

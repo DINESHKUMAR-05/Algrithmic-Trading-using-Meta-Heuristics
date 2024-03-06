@@ -17,7 +17,7 @@ class CuckooSearchConfig:
 
 class Nest:
     def __init__(self):
-        self.name = '#' + ''.join(map(str, np.random.randint(0, 9, size=7).tolist()))
+        self.name = ''.join(map(str, np.random.randint(0, 9, size=7).tolist()))
         self.num_epochs_base = np.random.choice(np.arange(60, 300))
         self.hidden_size = np.random.choice([2 ** power for power in range(2, 10)])
         self.num_layers = np.random.choice(np.arange(2, 15))
@@ -56,6 +56,7 @@ class CuckooSearch:
         self.val_loss_history = []
 
     def fit(self, X_val, y_val):
+        saved_values=[]
         for epoch in range(self.config.num_epochs):
             self.evaluate(X_val, y_val, self.population)
             self.val_loss_history.append(self.population.best_nest.loss)
@@ -75,6 +76,8 @@ class CuckooSearch:
                             val_metric=self.val_loss_history)
 
                 print(f'{self.population.best_nest}')
+                saved_values.append(self.population.best_nest)
+        print(saved_values)
 
     def evaluate(self, X_val, y_val, population):
         losses = []

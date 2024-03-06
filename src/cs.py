@@ -2,7 +2,6 @@ import numpy as np
 from torch import optim
 from src.models import *
 from src.genetic_algorithm import seed_everything
-from src.training import train, predict
 import torch
 import random
 import os

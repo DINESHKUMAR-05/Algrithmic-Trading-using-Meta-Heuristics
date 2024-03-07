@@ -21,9 +21,9 @@ class PSO:
 
   def objFn(self,params):
     lr = params[0]
-    epoch = params[1]
-    hidden_units = params[2]
-    num_layers = params[3]
+    epoch = int(params[1])
+    hidden_units = int(params[2])
+    num_layers = int(params[3])
     if self.model == 'LSTM':
       seed_everything(77)
       model = LSTM(input_size=self.X_val.shape[2],

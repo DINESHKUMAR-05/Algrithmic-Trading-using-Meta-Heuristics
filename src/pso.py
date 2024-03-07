@@ -26,13 +26,13 @@ class PSO:
     num_layers = int(params[3])
     if self.model == 'LSTM':
       seed_everything(77)
-      model = LSTM(input_size=self.X_val.shape[2],
+      Model = LSTM(input_size=self.X_val.shape[2],
               hidden_size=hidden_units,
               num_layers=num_layers).to(self.device)
       
     elif self.model == 'GRU':
       seed_everything(77)
-      model = GRU(input_size=self.X_val.shape[2],
+      Model = GRU(input_size=self.X_val.shape[2],
               hidden_size=hidden_units,
               num_layers=num_layers).to(self.device)
         
@@ -42,7 +42,7 @@ class PSO:
 
     optimizer = optim.Adam(model.parameters(), lr=lr)
     seed_everything(77)
-    train(self.model, self.criterion, optimizer, self.device, self.X_val, self.y_val, epoch, 
+    train(Model, self.criterion, optimizer, self.device, self.X_val, self.y_val, epoch, 
           verbose=False, return_loss_history=False, compute_test_loss=False)
           
     return predict(self.model, self.X_val, self.y_val, self.criterion, self.device)

@@ -25,10 +25,10 @@ class PSO:
     hidden_units = params[2]
     num_layers = params[3]
     if self.model == 'LSTM':
-        seed_everything(77)
-        model = LSTM(input_size=self.X_val.shape[2],
-                hidden_size=hidden_units,
-                num_layers=num_layers).to(self.device)
+      seed_everything(77)
+      model = LSTM(input_size=self.X_val.shape[2],
+              hidden_size=hidden_units,
+              num_layers=num_layers).to(self.device)
       
     elif self.model == 'GRU':
       seed_everything(77)

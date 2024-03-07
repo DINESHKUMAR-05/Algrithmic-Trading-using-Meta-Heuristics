@@ -47,5 +47,6 @@ class PSO:
           
     return predict(self.model, self.X_val, self.y_val, self.criterion, self.device)
   
-  def fit(self,lb,ub):
-    return pso(func= self.objFn, lb, ub, swarmsize=self.swarmsize, omega=self.omega, maxiter=self.max_iter)
+  def fit(self, lb, ub):
+    return pso(func=self.objFn, lb=lb, ub=ub, swarmsize=self.swarmsize, omega=self.omega, maxiter=self.maxiter)
+

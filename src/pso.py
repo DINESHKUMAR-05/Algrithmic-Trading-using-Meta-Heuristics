@@ -45,8 +45,8 @@ class PSO:
     train(Model, self.criterion, optimizer, self.device, self.X_val, self.y_val, epoch, 
           verbose=False, return_loss_history=False, compute_test_loss=False)
           
-    return predict(self.model, self.X_val, self.y_val, self.criterion, self.device)
+    return predict(Model, self.X_val, self.y_val, self.criterion, self.device)
   
   def fit(self, lb, ub):
-    return pso(func=self.objFn, lb=lb, ub=ub, swarmsize=self.swarmsize, omega=self.omega, maxiter=self.maxiter)
+    return pso(func=self.objFn, lb=lb, ub=ub, swarmsize=self.swarmsize, omega=self.omega, maxiter=self.maxiter, debug= True)
 

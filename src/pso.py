@@ -40,7 +40,7 @@ class PSO:
       raise ValueError('Only LSTM and GRU blocks are available for optimization.')
 
 
-    optimizer = optim.Adam(model.parameters(), lr=lr)
+    optimizer = optim.Adam(Model.parameters(), lr=lr)
     seed_everything(77)
     train(Model, self.criterion, optimizer, self.device, self.X_val, self.y_val, epoch, 
           verbose=False, return_loss_history=False, compute_test_loss=False)

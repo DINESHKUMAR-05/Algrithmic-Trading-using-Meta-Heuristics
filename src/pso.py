@@ -9,7 +9,7 @@ from pyswarm import pso
 os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:2"
 
 class PSO:
-  def __init__(self, device, criterion, X_val, y_val, model, swarmsize: int = 100, omega: int = 0.5, maxiter: int = 100):
+  def __init__(self, device, criterion, X_val, y_val, model, swarmsize: int = 100, omega: float = 0.5, maxiter: int = 100):
     self.swarmsize= swarmsize
     self.omega = omega
     self.maxiter = maxiter

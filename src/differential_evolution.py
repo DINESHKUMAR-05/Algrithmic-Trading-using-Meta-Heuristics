@@ -49,7 +49,7 @@ class DE:
           
     return predict(Model, self.X_val, self.y_val, self.criterion, self.device)
 
-  def fit(bounds):
+  def fit(self,bounds):
     return differential_evolution(func=self.objFn,bounds=bounds,maxiter=self.maxiter,updating=self.updating,popsize=self.popsize,mutation=self.mutation,recombination=self.recombination,disp=True,seed=77)
 
 

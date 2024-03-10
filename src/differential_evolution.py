@@ -9,12 +9,13 @@ from scipy.optimize import differential_evolution
 os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:2"
 
 class DE:
-  def __init__(self, device, criterion, X_val, y_val, model, popsize: int = 100, mutation: tuple = (0.5,1), recombination: float = 0.7,  maxiter: int = 100):
+  def __init__(self, device, criterion, X_val, y_val, model, popsize: int = 100, mutation: tuple = (0.5,1),updating : str = "immediate", recombination: float = 0.7,  maxiter: int = 100):
     self.popsize= popsize
     self.mutation = mutation
     self.recombination = recombination
     self.maxiter = maxiter
     self.model=model
+    self.updating= updating
     self.device=device
     self.criterion = criterion
     self.X_val = X_val
@@ -49,6 +50,6 @@ class DE:
     return predict(Model, self.X_val, self.y_val, self.criterion, self.device)
 
   def fit(bounds):
-    return differential_evolution(func=objFn,bounds=bounds,maxiter=self.maxiter,popsize=self.popsize,mutation=self.mutation,recombination=self.recombination,disp=True,seed=77)
+    return differential_evolution(func=objFn,bounds=bounds,maxiter=self.maxiter,updating=self.updating,popsize=self.popsize,mutation=self.mutation,recombination=self.recombination,disp=True,seed=77)
 
 

@@ -52,4 +52,4 @@ class FireFlyAlg:
   
   def fit(self, lb, ub, dim=10):
     fa= FireflyAlgorithm(pop_size=self.pop_size, alpha=self.alpha, betamin=self.betamin, gamma=self.gamma, seed=None)
-    return fa.run(function=objFn, dim=dim, lb=lb, ub=ub, max_evals=self.max_iter)
+    return fa.run(function=self.objFn, dim=dim, lb=lb, ub=ub, max_evals=self.max_iter)
